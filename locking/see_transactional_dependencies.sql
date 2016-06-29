@@ -1,6 +1,6 @@
 -- See all processes blocking process with a specified application_name
 WITH blocked_query AS (
-    SELECT * FROM pg_stat_activity WHERE waiting AND application_name ilike '%application_name%'
+    SELECT * FROM pg_stat_activity WHERE waiting AND application_name ilike '%alembic%'
 )
 SELECT
     blocked.pid AS "Blocked PID",

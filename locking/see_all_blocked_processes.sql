@@ -7,7 +7,8 @@ SELECT
     substring(blocked_activity.query, 1, 40) AS blocked_query,
     blocked_activity.state,
     substring(blocking_activity.query, 1, 40) AS current_query_in_blocking_process,
-    blocking_activity.state
+    blocking_activity.state,
+    blocking_activity.state_change
 FROM pg_catalog.pg_locks blocked_locks
 JOIN pg_catalog.pg_stat_activity blocked_activity ON blocked_activity.pid = blocked_locks.pid
 JOIN pg_catalog.pg_locks blocking_locks ON
