@@ -4,6 +4,7 @@ SELECT
     a.txn_db AS "TXN Database",
     a.xid AS "TXN ID",
     a.pid AS "PID",
+    SUBSTRING(r.query, 1, 30) AS "QUERY",
     a.txn_start AS "TXT Start",
     a.lock_mode AS "Lock Mode",
     CASE
@@ -37,4 +38,5 @@ LEFT JOIN (
     ) c
 ON a.relation = c.id
 LEFT JOIN pg_clASs d ON a.relation = d.oid
-WHERE a.relation IS NOT NULL;
+WHERE a.relation IS NOT NULL
+ORDER BY DATEDIFF(s, a.txn_start, GETDATE()) DESC;
