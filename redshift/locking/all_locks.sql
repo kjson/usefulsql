@@ -38,5 +38,6 @@ LEFT JOIN (
     ) c
 ON a.relation = c.id
 LEFT JOIN pg_clASs d ON a.relation = d.oid
+LEFT JOIN stv_recents r ON r.pid = a.pid
 WHERE a.relation IS NOT NULL
 ORDER BY DATEDIFF(s, a.txn_start, GETDATE()) DESC;
